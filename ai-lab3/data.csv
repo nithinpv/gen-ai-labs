@@ -1,0 +1,9 @@
+student_name,subject,branch,month,attendance_percentage
+Amit,Maths,CSE,Jan,100
+Amit,Physics,CSE,Jan,90
+Riya,Physics,CSE,Jan,45
+Suresh,Maths,ECE,Jan,80
+Suresh,Maths,ECE,Feb,70
+Neha,Maths,ECE,Jan,60
+Neha,Physics,ECE,Jan,40
+Amit,Chemistry,CSE,Feb,80
