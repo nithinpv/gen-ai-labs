@@ -1,5 +1,4 @@
-# 🎓 Student Query Assistant  
-### RAG (Retrieval-Augmented Generation) Tutorial
+#  RAG (Retrieval-Augmented Generation) Tutorial
 
 This tutorial demonstrates how to build a small but realistic AI system. It answers natural language questions over **tudent attendance data stored in a relational database.
 
@@ -86,10 +85,10 @@ We use **Groq** to access an LLM.
 
 ## 🔐 Step 2: Set up environment variables
 
-Create a file named `.env` in the project root:
+Create a file named `.env` in the project root. Add the API key copied in the previous step, to this file as shown below
 
 ```env
-GROQ_API_KEY=your_api_key_here
+GROQ_API_KEY=<paste_your_api_key_here>
 ```
 
 ## 🧪 Step 3: Install dependencies

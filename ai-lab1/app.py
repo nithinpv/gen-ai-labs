@@ -2,7 +2,7 @@ import streamlit as st
 from agent import get_help
 
 st.title("🎓 Student Support Agent")
-st.write("Ask any question related to studies, stress, or resources.")
+st.write("Ask any question related to studies,  time management or learning resources.")
 
 user_input = st.text_area("Your question")
 
