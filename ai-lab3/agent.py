@@ -1,9 +1,12 @@
 from langchain_groq import ChatGroq
-from db import run_query
+from db import init_db, run_query
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
+#Initialize the database at startup
+init_db()
 
 llm = ChatGroq(api_key=os.getenv("GROQ_API_KEY"), 
                model="llama-3.3-70b-versatile", 

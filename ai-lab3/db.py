@@ -1,19 +1,12 @@
 import sqlite3
+import csv
+import os
 
 
 def get_connection():
     return sqlite3.connect("attendance.db")
 
-def run_query(sql: str):
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    conn.close()
-    return rows
-
-#One time function to create and seed the database
-def seed_data():
+def init_db():
     conn = get_connection()
     cur = conn.cursor()
 
@@ -27,21 +20,33 @@ def seed_data():
     )
     """)
 
-    data = [
-        ("Amit", "Maths", "CSE", "Jan", 100),
-        ("Amit", "Physics", "CSE", "Jan", 90),
-        ("Riya", "Physics", "CSE", "Jan", 45),
-        ("Suresh", "Maths", "ECE", "Jan", 80),
-        ("Suresh", "Maths", "ECE", "Feb", 70),
-        ("Neha", "Maths", "ECE", "Jan", 60),
-        ("Neha", "Physics", "ECE", "Jan", 40),
-        ("Amit", "Chemistry", "CSE", "Feb", 95),
-        ("Riya", "Physics", "CSE", "Feb", 85),
-    ]
+    cur.execute("DELETE FROM attendance")
 
-    cur.executemany("INSERT INTO attendance VALUES (?, ?, ?, ?, ?)", data)
+    with open("data.csv", newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        rows = [
+            (
+                r["student_name"],
+                r["subject"],
+                r["branch"],
+                r["month"],
+                int(r["attendance_percentage"])
+            )
+            for r in reader
+        ]
+
+    cur.executemany(
+        "INSERT INTO attendance VALUES (?, ?, ?, ?, ?)",
+        rows
+    )
+
     conn.commit()
     conn.close()
 
-if __name__ == "__main__":
-    seed_data()
+def run_query(sql: str):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute(sql)
+    rows = cur.fetchall()
+    conn.close()
+    return rows
