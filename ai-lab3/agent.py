@@ -1,4 +1,6 @@
 from langchain_groq import ChatGroq
+from langchain.prompts import PromptTemplate
+from langchain.schema.output_parser import StrOutputParser
 from db import init_db, run_query
 from dotenv import load_dotenv
 import os
@@ -12,6 +14,47 @@ llm = ChatGroq(api_key=os.getenv("GROQ_API_KEY"),
                model="llama-3.3-70b-versatile", 
                temperature=0.2)
 
+sql_prompt = PromptTemplate(
+    input_variables=["schema", "question"],
+    template="""
+You are an expert SQL assistant.
+
+Database schema:
+{schema}
+
+Write a valid SQLite SELECT query.
+- Return ONLY the SQL query
+- Do NOT use markdown or code fences
+- Do NOT modify data
+
+Question:
+{question}
+"""
+)
+
+answer_prompt = PromptTemplate(
+    input_variables=["question", "sql", "results"],
+    template="""
+User question:
+{question}
+
+SQL query:
+{sql}
+
+Query result:
+{results}
+
+Explain the answer in simple English.
+Keep the answer concise.
+"""
+)
+
+output_parser = StrOutputParser()
+
+sql_chain = sql_prompt | llm | output_parser
+answer_chain = answer_prompt | llm | output_parser
+
+
 DB_SCHEMA = """
 Table: attendance
 Columns:
@@ -22,38 +65,20 @@ Columns:
 - attendance_percentage (INTEGER)
 """
 
-def generate_sql(question: str) -> str:
-    prompt = f"""
-You are an expert SQL assistant.
+def answer_question(question: str):
+    sql = sql_chain.invoke({
+        "schema": DB_SCHEMA,
+        "question": question
+    })
 
-Database schema:
-{DB_SCHEMA}
-
-Write a valid SQLite SQL query for the question below.
-Return ONLY the SQL query.
-Do NOT use markdown or code fences.
-
-Question:
-{question}
-"""
-    return llm.invoke(prompt).content.strip()
-
-def answer_question(question: str) -> str:
-    sql = generate_sql(question)
-    print("Generated SQL:", sql)
-    
     results = run_query(sql)
-    print("Results:", results)
-    answer_prompt = f"""
-User question:
-{question}
 
-SQL query:
-{sql}
+    answer = answer_chain.invoke({
+        "question": question,
+        "sql": sql,
+        "results": results
+    })
+    print(results)
+    return answer, sql, results
 
-Query result:
-{results}
 
-Answer in simple English. Keep the answer concise.
-"""
-    return llm.invoke(answer_prompt).content

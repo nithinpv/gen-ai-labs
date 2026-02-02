@@ -70,13 +70,13 @@ Create a file named `.env` in the project root. Add the API key copied in the pr
 ```env
 GROQ_API_KEY=<paste_your_api_key_here>
 ```
-
+---
 ## 🧪 Step 3: Install dependencies
 
 ```
 pip install langchain langchain_groq streamlit python-dotenv
 ```
-
+---
 ## ▶️ Step 4: Run the application
 
 ```
