@@ -80,16 +80,18 @@ GROQ_API_KEY=<paste_your_api_key_here>
 ## Step 4: Setup python enviroment and install dependencies
 
 ```
-cd C:/gen-ai-labs
+cd C:\gen-ai-labs
 
 python -m venv .venv
 
-.venv\Scripts\activate.bat &REM For PowerShell: .\venv\Scripts\Activate.ps1 
+.venv\Scripts\activate.bat
 
 cd ai-lab1
 
 pip install langchain langchain_groq streamlit python-dotenv
 ```
+Note: For PowerShell use .\venv\Scripts\Activate.ps1 
+
 ---
 ## Step 5: Run the application
 
