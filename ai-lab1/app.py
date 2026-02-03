@@ -1,7 +1,7 @@
 import streamlit as st
 from agent import get_help
 
-st.title("🎓 ChatMIT")
+st.title("🎓 ChatMIT 1.0")
 st.write("Ask any question related to studies,  time management or learning resources.")
 
 user_input = st.text_area("Your question")
