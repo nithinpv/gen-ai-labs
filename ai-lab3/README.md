@@ -92,8 +92,6 @@ python -m venv .venv
 
 .venv\Scripts\activate.bat
 
-cd ai-lab3
-
 pip install -r requirements.txt
 ```
 Note: For PowerShell use ```.venv\Scripts\Activate.ps1 ```
@@ -102,6 +100,8 @@ Note: For PowerShell use ```.venv\Scripts\Activate.ps1 ```
 ## Step 5: Run the application
 
 ```
+cd ai-lab3
+
 streamlit run app.py
 ```
 Your browser will open automatically with the UI.

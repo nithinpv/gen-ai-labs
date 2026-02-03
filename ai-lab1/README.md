@@ -85,8 +85,6 @@ python -m venv .venv
 
 .venv\Scripts\activate.bat
 
-cd ai-lab1
-
 pip install langchain langchain_groq streamlit python-dotenv
 ```
 Note: For PowerShell use ```.venv\Scripts\Activate.ps1 ```
@@ -95,6 +93,8 @@ Note: For PowerShell use ```.venv\Scripts\Activate.ps1 ```
 ## Step 5: Run the application
 
 ```
+cd ai-lab1
+
 streamlit run app.py
 ```
 Your browser will open automatically with the UI.
