@@ -12,5 +12,5 @@ if st.button("Get Help"):
     else:
         response = get_help(user_input)
 
-        st.subheader("AI Response")
+        st.subheader("Response")
         st.write(response)
