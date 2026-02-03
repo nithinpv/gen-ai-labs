@@ -8,9 +8,11 @@ The application will answer to questions like:
 - *What is the average attendance on Amit in Chemistry?*
 
 The application uses:
+- **LLaMa 3.3** as the LLM
+- **Groq** for Inference provider
+- **LangChain** for Agent framework
 - **SQLite** for storing the student attendance data 
-- **LangChain** for LLM interaction
-- **Streamlit** for a UI
+- **Streamlit** for a rendering the UI
 
 ---
 **Retrieval-Augmented Generation (RAG)** means:
@@ -51,7 +53,7 @@ ai-lab3/
 
 ## Step 1: Setup the code files
 
-Create a folder under C: drive and use git to clone the repository
+Create a folder under C: drive and use **git** to clone the repository
 ```
 git clone https://github.com/nithinpv/gen-ai-labs.git
 ```

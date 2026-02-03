@@ -21,8 +21,10 @@ In this tutorial, you will understand:
 - How to separate UI and AI logic
 
 The application uses:
-- **LangChain** for LLM interaction
-- **Streamlit** for a UI
+- **LLaMa 3.3** as the LLM
+- **Groq** for Inference provider
+- **LangChain** for Agent framework
+- **Streamlit** for a rendering the UI
 ---
 
 ## Architecture
@@ -43,7 +45,7 @@ ai-lab1/
 
 ## Step 1: Setup the code files
 
-Create a folder under C: drive and use git to clone the repository
+Create a folder under C: drive and use **git** to clone the repository
 ```
 git clone https://github.com/nithinpv/gen-ai-labs.git
 ```
