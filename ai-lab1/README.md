@@ -1,10 +1,17 @@
 #  AI application Tutorial
 
-This tutorial demonstrates a very simples AI application implementation using langchain framework. The application is called **Student Support Agent**. It provides a UI page where student can post their queries and get answers.
+This tutorial demonstrates a very simples AI application implementation using langchain framework. The application is a helpful AI assistant called **ChatMIT**
 
-The application uses:
-- **LangChain** for LLM interaction
-- **Streamlit** for a UI
+Students can ask questions like:
+
+- How can I study effectively for exams when I only have one week left?
+- What are some good time management tips for balancing school and homework?
+- What are the best free online resources to learn Python?
+
+But will not support questions like
+
+- What is the best smartphone to buy right now?
+- Can you explain how to invest money in the stock market?
 
 ---
 In this tutorial, you will understand:
@@ -13,45 +20,42 @@ In this tutorial, you will understand:
 - How prompts influence responses
 - How to separate UI and AI logic
 
+The application uses:
+- **LangChain** for LLM interaction
+- **Streamlit** for a UI
 ---
 
-## 🏗️ High-level architecture
+## Architecture
 
-```
-User Question 
-↓
-Prompt (text)
-↓
-LLM
-↓
-Answer
-```
+![Diagram](../images/arch_diagram1.png)
 
 ---
 
 ## 🗂️ Project structure
 ```
-ai-lab3/
+ai-lab1/
 │
 ├── app.py 
 ├── agent.py 
 └── .env 
 ```
+---
+
+## Step 1: Setup the code files
+
+Create a folder under C: drive and use git to clone the repository
+```
+git clone https://github.com/nithinpv/gen-ai-labs.git
+```
+Or
+
+- Go to https://github.com/nithinpv/gen-ai-labs 
+- Click on **"<> Code"** and select **"Download Zip"**
+- Unzip the content to a folder under C: drive
 
 ---
 
-## 📋 Example questions
-
-You can ask questions like:
-
-- *How can I prepare better for technical interviews?*
-- *I cannot afford online courses. What are my options for learning generative ai?*
-
-The AI responds with **kind, practical, and actionable advice**.
-
----
-
-## 🔑 Step 1: Create a Groq API key
+## Step 2: Create a Groq API key
 
 We use **Groq** to access an LLM.
 
@@ -63,21 +67,29 @@ We use **Groq** to access an LLM.
 
 ---
 
-## 🔐 Step 2: Set up environment variables
+## Step 3: Set up environment variables
 
-Create a file named `.env` in the project root. Add the API key copied in the previous step, to this file as shown below
+Create a file named `.env` in the project root. Add a key named **GROQ_API_KEY**. Add the API key copied in the previous step as value, as shown below
 
 ```env
 GROQ_API_KEY=<paste_your_api_key_here>
 ```
 ---
-## 🧪 Step 3: Install dependencies
+## Step 4: Setup python enviroment and install dependencies
 
 ```
+cd C:/gen-ai-labs
+
+python -m venv .venv
+
+.venv\Scripts\activate.bat &REM For PowerShell: .\venv\Scripts\Activate.ps1 
+
+cd ai-lab1
+
 pip install langchain langchain_groq streamlit python-dotenv
 ```
 ---
-## ▶️ Step 4: Run the application
+## Step 5: Run the application
 
 ```
 streamlit run app.py

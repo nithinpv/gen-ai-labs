@@ -78,7 +78,6 @@ def answer_question(question: str):
         "sql": sql,
         "results": results
     })
-    print(results)
     return answer, sql, results
 
 

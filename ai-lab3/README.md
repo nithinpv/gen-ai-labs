@@ -1,9 +1,14 @@
 #  RAG (Retrieval-Augmented Generation) Tutorial
 
-This tutorial demonstrates how to build a small but realistic AI system. It answers natural language questions over **tudent attendance data stored in a relational database.
+This tutorial demonstrates how to build a small but realistic AI system. It answers natural language questions over **student attendance data** stored in a relational database.
+
+The application will answer to questions like:
+- *Which students have less than 50% attendance in Physics?*
+- *What is the average attendance of ECE branch in Jan?*
+- *What is the average attendance on Amit in Chemistry?*
 
 The application uses:
-- **SQLite** as the database
+- **SQLite** for storing the student attendance data 
 - **LangChain** for LLM interaction
 - **Streamlit** for a UI
 
@@ -24,26 +29,9 @@ In this tutorial:
 
 ---
 
-## 🏗️ High-level architecture
+## Architecture
 
-```
-User Question (English)
-↓
-LLM → Generate SQL query
-↓
-Attendance Database 
-↓
-Query Results
-↓
-LLM → Convert results to plain English
-↓
-Answer
-```
-
-**Key idea:**
-- The LLM *reasons*
-- The database *answers*
-- The LLM *explains*
+![Diagram](../images/arch_diagram2.png)
 
 ---
 
@@ -61,17 +49,20 @@ ai-lab3/
 
 ---
 
-## 📋 Example questions
+## Step 1: Setup the code files
 
-You can ask questions like:
+Create a folder under C: drive and use git to clone the repository
+```
+git clone https://github.com/nithinpv/gen-ai-labs.git
+```
+Or
 
-- Which students have 100% attendance in all the subjects in the "CSE" branch?
-- Which students have below 50% attendance in Physics?
-- What is the average attendance in Maths subject in the "ECE" branch?
+- Go to https://github.com/nithinpv/gen-ai-labs 
+- Click on **"<> Code"** and select **"Download Zip"**
+- Unzip the content to a folder under C: drive
 
 ---
-
-## 🔑 Step 1: Create a Groq API key
+## Step 2: Create a Groq API key
 
 We use **Groq** to access an LLM.
 
@@ -83,21 +74,29 @@ We use **Groq** to access an LLM.
 
 ---
 
-## 🔐 Step 2: Set up environment variables
+## Step 3: Set up environment variables
 
-Create a file named `.env` in the project root. Add the API key copied in the previous step, to this file as shown below
+Create a file named `.env` in the project root. Add a key named **GROQ_API_KEY**. Add the API key copied in the previous step as value, as shown below
 
 ```env
 GROQ_API_KEY=<paste_your_api_key_here>
 ```
 ---
-## 🧪 Step 3: Install dependencies
+## Step 4: Setup python enviroment and install dependencies
 
 ```
+cd C:/gen-ai-labs
+
+python -m venv .venv
+
+.venv\Scripts\activate.bat &REM For PowerShell: .\venv\Scripts\Activate.ps1 
+
+cd ai-lab3
+
 pip install -r requirements.txt
 ```
 ---
-## ▶️ Step 4: Run the application
+## Step 5: Run the application
 
 ```
 streamlit run app.py
