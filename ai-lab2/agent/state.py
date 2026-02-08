@@ -1,6 +1,6 @@
-from typing import TypedDict
+from typing import TypedDict, List, Dict
 
-class AgentState(TypedDict):
-    user_input: str
-    category: str
+class AgentState(TypedDict, total=False):
+    question: str
     response: str
+    history: List[Dict[str, str]]
