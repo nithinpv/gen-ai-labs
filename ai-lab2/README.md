@@ -1,53 +1,44 @@
-#  AI application Tutorial
+#  LangGraph Tutorial
 
-This tutorial demonstrates a simple AI application implementation using langchain framework. The application is a helpful AI assistant called **ChatMIT**
+This tutorial demonstrates the use of langgraph in AI application implementation. The application is an enhaced version of student AI assistant called **ChatMIT**. It utilizes memory to manages the conversational history
 
-Students can ask questions like:
-
-- How can I study effectively for exams when I only have one week left?
-- What are some good time management tips for balancing school and homework?
-- What are the best free online resources to learn Python?
-
-But will not support questions like
-
-- What is the best smartphone to buy right now?
-- Can you explain how to invest money in the stock market?
-
----
-In this tutorial, you will understand:
-
-- How to call an LLM from Python
-- How prompts influence responses
-- How to separate UI and AI logic
+The application should remember the details from previous conversations as shown below:
+- *You: Hi, My name is Krishna*
+- *ChatMIT: Hi Krisha, ....*
+- *You: What is my name?*
+- *ChatMIT: Your name is Krisha*
 
 The application uses:
 - **LLaMa 3.3** as the LLM
 - **Groq** for Inference provider
-- **LangChain** for Agent framework
+- **LangChain and LangGraph** for Agent framework
 - **Streamlit** for a rendering the UI
----
 
 ## Architecture
 
-![Diagram](../images/arch_diagram1.png)
+![Diagram](../images/langgraph.png)
 
 ---
 
 ## Folder structure
 ```
-ai-lab1/
+ai-lab2/
 │
+├── agent/ 
+│   ├── graph.py 
+│   ├── nodes.py
+│   └── state.py 
 ├── app.py 
-├── agent.py 
 ├── README.md 
+├── requirements.txt
 └── .env 
 ```
 ---
 
+Note: Step1 and Step2 below, are one-time activities.They can be skipped, if they are already completed during ai-lab1
 ## Step 1: Setup the code files
 
-If **git** utility is available, setup code files using git as mentioned below  
-
+If **git** utility is available, setup code files using **git** as mentioned below  
 Create a folder named ```training``` under C: drive  
 Run the following commands to clone the repository
 ```
@@ -79,14 +70,14 @@ Copy the generated API key
 
 ## Step 3: Set up environment variables
 Open the ```C:\training\gen-ai-labs``` folder in vscode.  
-Select the ```ai-lab1``` folder and create a new file with name ```".env"``` under it.  
+Select the ```ai-lab2``` folder and create a new file with name ```".env"``` under it.  
 Note: The full file name is ```".env"```. No other prefix or suffix should be given.  
 Add the following code to this file. 
 
 ```env
 GROQ_API_KEY=<value>
 ```
-Replace ```<value>``` with the API key copied in the previous step  
+Replace ```<value>``` with the API key copied in the previous step 
 
 ---
 ## Step 4: Setup python enviroment and install dependencies
@@ -101,17 +92,18 @@ python -m venv .venv
 ```
 Note: For command prompt use ```.venv\Scripts\activate.bat ``` instead.  
 Verify that the terminal prompt shows ```(.venv)``` indicating that the virtual enviroment is active  
-Install the python libraries using the following command
+Install the python libraries using the following commands
 ```
-pip install langchain langchain_groq streamlit python-dotenv
-```
+cd C:\training\gen-ai-labs\ai-lab2
 
+pip install -r requirements.txt
+```
 
 ---
 ## Step 5: Run the application
 
 ```
-cd C:\training\gen-ai-labs\ai-lab1
+cd C:\training\gen-ai-labs\ai-lab2
 
 streamlit run app.py
 ```

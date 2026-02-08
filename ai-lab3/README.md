@@ -63,8 +63,9 @@ cd C:\training
 
 git clone https://github.com/nithinpv/gen-ai-labs.git
 ```
-Or
-If **git** utility is not available, setup code files as mentioned below 
+Or  
+If **git** utility is not available, setup code files as mentioned below  
+
 Go to https://github.com/nithinpv/gen-ai-labs  
 Click on **"<> Code"** and select **"Download Zip"**  
 Unzip the file. Replace the existing destination path with ```C:\training``` while extraction  
