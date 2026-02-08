@@ -6,7 +6,7 @@ The application should remember the details from previous conversations as shown
 - *You: Hi, My name is Krishna*
 - *ChatMIT: Hi Krisha, ....*
 - *You: What is my name?*
-- *ChatMIT: Your name is Krisha*
+- *ChatMIT: Your name is Krishna*
 
 The application uses:
 - **LLaMa 3.3** as the LLM
