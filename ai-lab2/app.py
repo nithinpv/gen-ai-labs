@@ -19,8 +19,7 @@ with st.container(border=True, height=230):
     if st.session_state.history:
         for turn in st.session_state.history:
             st.markdown(f'<div style="padding-bottom: 10px; color: #388e3c;"><b>You:</b> {turn.get("user","")}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div style="padding-bottom: 10px;"><b>ChatMIT:</b> {turn.get("assistant","")}</div>', unsafe_allow_html=True)
-           
+            st.markdown(f'<div style="padding-bottom: 10px;"><b>ChatMIT:</b> {turn.get("ai","")}</div>', unsafe_allow_html=True)
     else:
         st.info("Start a conversation by typing a question below.")
 
@@ -35,12 +34,8 @@ with st.form(key="chat_form", clear_on_submit=True):
 
 if submit_button:
     if user_input.strip():
-        # Pass the current conversation history into the agent
         result = agent.invoke({"question": user_input, "history": st.session_state.history})
-
-        # Append the new turn to history
-        st.session_state.history.append({"user": user_input, "assistant": result.get("response", "")})
-        
+        st.session_state.history.append({"user": user_input, "ai": result.get("response", "")})
         st.rerun()
     else:
         st.warning("Please enter a question.")

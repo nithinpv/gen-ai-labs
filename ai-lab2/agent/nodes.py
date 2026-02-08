@@ -17,14 +17,14 @@ def get_help(state: AgentState):
 
     history = state.get("history", []) if isinstance(state, dict) else []
     for turn in history:
-        user_msg = turn.get("user", "")
-        ai_msg = turn.get("assistant", "")
-        if user_msg:
-            messages.append(HumanMessage(content=user_msg))
+        human_msg = turn.get("user", "")
+        ai_msg = turn.get("ai", "")
+        if human_msg:
+            messages.append(HumanMessage(content=human_msg))
         if ai_msg:
             messages.append(AIMessage(content=ai_msg))
 
     messages.append(HumanMessage(content=state.get("question", "")))
    
-    ai_msg = llm.invoke(messages)
-    return {"response": ai_msg.content}
+    response = llm.invoke(messages)
+    return {"response": response.content}

@@ -37,7 +37,7 @@ In this tutorial:
 
 ---
 
-## 🗂️ Project structure
+## Folder structure
 ```
 ai-lab3/
 │
@@ -45,62 +45,81 @@ ai-lab3/
 ├── agent.py 
 ├── db.py 
 ├── attendance.csv 
+├── README.md
 ├── requirements.txt
 └── .env 
 ```
 
 ---
 
+Note: Step1 and Step2 below, are one-time activities.They can be skipped, if they are already completed during ai-lab1
 ## Step 1: Setup the code files
 
-Create a folder under C: drive and use **git** to clone the repository
+If **git** utility is available, setup code files using **git** as mentioned below  
+Create a folder named ```training``` under C: drive  
+Run the following commands to clone the repository
 ```
+cd C:\training
+
 git clone https://github.com/nithinpv/gen-ai-labs.git
 ```
 Or
-
-- Go to https://github.com/nithinpv/gen-ai-labs 
-- Click on **"<> Code"** and select **"Download Zip"**
-- Unzip the content to a folder under C: drive
+If **git** utility is not available, setup code files as mentioned below 
+Go to https://github.com/nithinpv/gen-ai-labs  
+Click on **"<> Code"** and select **"Download Zip"**  
+Unzip the file. Replace the existing destination path with ```C:\training``` while extraction  
+After extraction rename the newly created folder from ```gen-ai-labs-main``` to ```gen-ai-labs```
 
 ---
+
 ## Step 2: Create a Groq API key
 
-We use **Groq** to access an LLM.
+We will be using inference provider named **Groq** to access an LLM.
 
-1. Go to https://console.groq.com  
-2. Sign in or create a new account  
-3. Click on **“API keys”** shown on the right side of the top banner  
-4. Click on **“Create API key”**  
-5. Copy the generated API key  
+Go to https://console.groq.com  
+Sign in or create a new account  
+Click on **“API keys”** shown on the right side of the top banner  
+Click on **“Create API key”**  
+Copy the generated API key  
 
 ---
 
 ## Step 3: Set up environment variables
-
-Create a file named `.env` in the project root. Add a key named **GROQ_API_KEY**. Add the API key copied in the previous step as value, as shown below
+Open the ```C:\training\gen-ai-labs``` folder in vscode.  
+Select the ```ai-lab3``` folder and create a new file with name ```".env"``` under it.  
+Note: The full file name is ```".env"```. No other prefix or suffix should be given.  
+Add the following code to this file. 
 
 ```env
-GROQ_API_KEY=<paste_your_api_key_here>
+GROQ_API_KEY=<value>
 ```
+Replace ```<value>``` with the API key copied in the previous step 
+
 ---
 ## Step 4: Setup python enviroment and install dependencies
 
-Using the vscode terminal (or command prompt/power shell) go to the **gen-ai-labs** folder (e.g. ```cd C:\gen-ai-labs```) and execute the following commands
+Open the terminal in vscode and execute the following commands
 ```
+cd C:\training\gen-ai-labs
+
 python -m venv .venv
 
-.venv\Scripts\activate.bat
+.venv\Scripts\Activate.ps1 
+```
+Note: For command prompt use ```.venv\Scripts\activate.bat ``` instead.  
+Verify that the terminal prompt shows ```(.venv)``` indicating that the virtual enviroment is active  
+Install the python libraries using the following commands
+```
+cd C:\training\gen-ai-labs\ai-lab3
 
 pip install -r requirements.txt
 ```
-Note: For PowerShell use ```.venv\Scripts\Activate.ps1 ```
 
 ---
 ## Step 5: Run the application
 
 ```
-cd ai-lab3
+cd C:\training\gen-ai-labs\ai-lab3
 
 streamlit run app.py
 ```
